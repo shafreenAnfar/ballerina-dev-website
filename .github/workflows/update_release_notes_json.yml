@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    paths:
-    - '_/data/metadata.json.json'
 
 jobs:
   Update:
