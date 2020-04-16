@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    paths:
+    - '_data/**'
 
 jobs:
   Update:
@@ -37,9 +39,9 @@ jobs:
         git config --global user.email "www.call911@gmai.com"
         git config --global user.name "shafreenAnfar"
         git add _data/release_notes_versions.json
-        git commit --allow-empty -m 'Release notes json update'
+        git commit --allow-empty -m 'Update release notes json'
         
         git push --set-upstream origin automate-release-notes-json
         echo 'Successfully pushed to automate-downloads-page-update branch'
         sudo snap install hub --classic
-        hub pull-request -m 'This is an automated pull request to update release_notes_versions.json for new release'
+        hub pull-request -m '[Automated] Update release_notes_versions.json for new release'
