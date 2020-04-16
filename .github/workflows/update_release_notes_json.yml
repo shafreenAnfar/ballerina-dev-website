@@ -33,7 +33,7 @@ jobs:
 
     - name: Updating release-notes-versions json file
       run: |
-        git checkout automate-release-notes-json 2>/dev/null || git checkout -b automate-release-notes-json
+        git checkout automate-release-notes-json-$GITHUB_SHA 2>/dev/null || git checkout -b automate-release-notes-json-$GITHUB_SHA
         git pull origin master
         
         git config --global user.email "www.call911@gmai.com"
@@ -41,7 +41,7 @@ jobs:
         git add _data/release_notes_versions.json
         git commit --allow-empty -m 'Update release notes json'
         
-        git push --set-upstream origin automate-release-notes-json
+        git push --set-upstream origin automate-release-notes-json-$GITHUB_SHA
         echo 'Successfully pushed to automate-downloads-page-update branch'
         sudo snap install hub --classic
         hub pull-request -m '[Automated] Update release_notes_versions.json for new release'
