@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-    - 'metadata.json'
+    - '_/data/metadata.json.json'
 
 jobs:
   Update:
