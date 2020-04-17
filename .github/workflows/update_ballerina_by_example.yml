@@ -31,9 +31,9 @@ jobs:
       run: sudo apt install jq
 
     - name: Generate BBEs
-      run: | 
-	cd ballerina-release
-	./ballerinaByExample/build-bbe.sh _data/metadata.json
+      run: |
+        cd ballerina-release
+        ./ballerinaByExample/build-bbe.sh _data/metadata.json
 
     - name: Set relevant folder as env variable 
       run: export SITE_FOLDER="`jq -r '.version' _data/metadata.json`"
