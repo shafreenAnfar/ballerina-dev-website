@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    paths:
-    - '_data/**'
 
 jobs:
   bbe-gen:
@@ -34,13 +32,13 @@ jobs:
       run: |
         cd ballerina-release
         ./ballerinaByExample/build-bbe.sh _data/metadata.json
-
-    - name: Set relevant folder as env variable 
+	
+    - name: Set relevant folder as env variable
       run: |
-	      site_folder="`jq -r '.version' _data/metadata.json`"
-	      array=($(echo $site_folder | tr "." "\n"))
-  	    SITE_FOLDER="${array[0]}.${array[1]}"
-	      export SITE_FOLDER=$SITE_FOLDER
+        site_folder="`jq -r '.version' _data/metadata.json`"
+        array=($(echo $site_folder | tr "." "\n"))
+        SITE_FOLDER="${array[0]}.${array[1]}"
+	export SITE_FOLDER=$SITE_FOLDER
 
     - name: Remove old examples file
       run: git rm -r ${SITE_FOLDER}/learn/by-example
