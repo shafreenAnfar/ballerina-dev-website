@@ -36,13 +36,17 @@ jobs:
         ./ballerinaByExample/build-bbe.sh _data/metadata.json
 
     - name: Set relevant folder as env variable 
-      run: export SITE_FOLDER="`jq -r '.version' _data/metadata.json`"
+      run: |
+	site_folder="`jq -r '.version' _data/metadata.json`"
+	array=($(echo $site_folder | tr "." "\n"))
+  	SITE_FOLDER="${array[0]}.${array[1]}"
+	export SITE_FOLDER=$SITE_FOLDER
 
     - name: Remove old examples file
-      run: git rm -r v1-2/learn/by-example
+      run: git rm -r ${SITE_FOLDER}/learn/by-example
 
     - name: Copy newly generated examples file
-      run: cp -r by-example v1-2/learn/
+      run: cp -r by-example ${SITE_FOLDER}/learn/
 
     - name: Updating by examples file
       run: |
