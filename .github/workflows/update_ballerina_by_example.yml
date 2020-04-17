@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Cloning ballerina-release
-      run: git clone https://ballerina-bot:$GITHUB_TOKEN@github.com/ballerina-platform/ballerina-release.git
+      run: git clone https://shafreenAnfar:$GITHUB_TOKEN@github.com/ballerina-platform/ballerina-release.git
 
     - name: Install json parser
       run: sudo apt install jq
