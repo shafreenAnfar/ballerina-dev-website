@@ -1,0 +1,60 @@
+name: Generate ballerina by examples
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+    - '_data/**'
+
+jobs:
+  bbe-gen:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{secrets.TEST}}
+
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.6.2
+      env:
+        GOPATH: /home/runner/work/ballerina-release
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Cloning ballerina-release
+      run: git clone https://ballerina-bot:$GITHUB_TOKEN@github.com/ballerina-platform/ballerina-release.git
+
+    - name: Install json parser
+      run: sudo apt install jq
+
+    - name: Generate BBEs
+      run: | 
+	cd ballerina-release
+	./ballerinaByExample/build-bbe.sh _data/metadata.json
+
+    - name: Set relevant folder as env variable 
+      run: export SITE_FOLDER="`jq -r '.version' _data/metadata.json`"
+
+    - name: Remove old examples file
+      run: git rm -r v1-2/learn/by-example
+
+    - name: Copy newly generated examples file
+      run: cp -r by-example v1-2/learn/
+
+    - name: Updating by examples file
+      run: |
+        git checkout automate-bbes-$GITHUB_SHA 2>/dev/null || git checkout -b automate-bbes-$GITHUB_SHA
+        git pull origin master
+        
+        git config --global user.email "ballerina-bot@ballerina.org"
+        git config --global user.name "ballerina-bot"
+        git add ${SITE_FOLDER}/learn/by-example
+        git commit --allow-empty -m 'Update release notes json'
+        
+        git push --set-upstream origin automate-release-notes-json-$GITHUB_SHA
+        echo 'Successfully pushed to automate-downloads-page-update branch'
+        sudo snap install hub --classic
+        hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for new release'
