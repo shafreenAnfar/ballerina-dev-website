@@ -50,7 +50,7 @@ jobs:
         git pull origin master
         
         git config --global user.email "ballerina-bot@ballerina.org"
-        git config --global user.name "ballerina-bot"
+        git config --global user.name "shafreenAnfar"
         git add ${SITE_FOLDER}/learn/by-example
         git commit --allow-empty -m 'Update release notes json'
         
