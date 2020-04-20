@@ -22,6 +22,11 @@ jobs:
     - name: Install jq for json manipulation
       run: sudo apt-get install jq
 
+    - name: Install hub for creating pull request
+      run: |
+        sudo snap install hub --classic
+        hub --version
+
     - name: Checkout code
       uses: actions/checkout@v2
 
@@ -52,6 +57,5 @@ jobs:
         
         git push --set-upstream origin automate-bbes-$GITHUB_SHA
         echo 'Successfully pushed to automate-bbes-$GITHUB_SHA branch'
-        
-        sudo snap install hub --classic
+
         hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for new release'
