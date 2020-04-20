@@ -20,7 +20,7 @@ jobs:
         GOPATH: /home/runner/work/ballerina-release
     
     - name: Install jq for json manipulation
-      uses: sudo apt-get install jq
+      run: sudo apt-get install jq
 
     - name: Checkout code
       uses: actions/checkout@v2
