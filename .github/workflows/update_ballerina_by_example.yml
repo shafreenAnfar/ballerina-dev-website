@@ -15,7 +15,7 @@ jobs:
     - name: Install hub for creating pull request
       run: |
         sudo snap install hub --classic
-        hub --version
+        bin/hub --version
 
     - name: Install Go
       uses: actions/setup-go@v1
