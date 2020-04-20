@@ -12,6 +12,11 @@ jobs:
       GITHUB_TOKEN: ${{secrets.TEST}}
 
     steps:
+    - name: Install hub for creating pull request
+      run: |
+        sudo snap install hub --classic
+        hub --version
+
     - name: Install Go
       uses: actions/setup-go@v1
       with:
@@ -21,11 +26,6 @@ jobs:
     
     - name: Install jq for json manipulation
       run: sudo apt-get install jq
-
-    - name: Install hub for creating pull request
-      run: |
-        sudo snap install hub --classic
-        hub --version
 
     - name: Checkout code
       uses: actions/checkout@v2
