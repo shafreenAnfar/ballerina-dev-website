@@ -25,13 +25,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Cloning ballerina-release
+    - name: Clone ballerina-release
       run: git clone https://shafreenAnfar:$GITHUB_TOKEN@github.com/ballerina-platform/ballerina-release.git
 
     - name: Generate BBEs
       run: |
         cd ballerina-release
-        ./ballerinaByExample/build-bbe.sh _data/metadata.json
+        ./ballerinaByExample/build-bbe.sh ../_data/metadata.json
 
     - name: Remove old examples file
       run: git rm -r learn/by-example
