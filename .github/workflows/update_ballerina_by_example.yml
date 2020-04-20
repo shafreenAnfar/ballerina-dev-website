@@ -57,6 +57,6 @@ jobs:
       shell: bash
       run: |
         curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-        hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for new release'
+        bin/hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for new release'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
