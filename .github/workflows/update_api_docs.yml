@@ -1,0 +1,68 @@
+name: Generate API Docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  apidoc-gen:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{secrets.TEST}}
+
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.12
+      env:
+        GOPATH: /home/runner/work/ballerina-release
+    
+    - name: Install jq for json manipulation
+      run: sudo apt-get install jq
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Clone ballerina-release
+      shell: bash
+      run: |
+        version="`jq -r '.version' _data/latest/metadata.json`"
+        BAL_VERSION="v${version}"
+        git clone https://github.com/ballerina-platform/ballerina-lang
+        echo "checkout Ballerina lang repo: $BAL_VERSION"
+        git --git-dir=ballerina-lang/.git --work-tree=ballerina-lang/ checkout $BAL_VERSION
+
+    - name: Generate API Docs
+      run: |
+        cd ballerina/distribution/zip/jballerina-tools
+        ../../../gradlew build -x check
+
+    - name: Remove old API Docs
+      run: git rm -r learn/api-docs/ballerina
+
+    - name: Copy newly generated examples file
+      run: cp -r distribution/zip/jballerina-tools/build/extracted-distributions/jballerina-tools-1.3.0-SNAPSHOT/docs learn/api-docs/ballerina
+
+    - name: Push changes for new API Docs
+      run: |
+        git checkout automate-apidoc-$GITHUB_SHA 2>/dev/null || git checkout -b automate-apidoc-$GITHUB_SHA
+        git pull origin master
+        
+        git config --global user.email "ballerina-bot@ballerina.org"
+        git config --global user.name "shafreenAnfar"
+        
+        git add learn/api-docs/ballerina
+        git commit --allow-empty -m 'Update API Docs'
+        
+        git push --set-upstream origin automate-apidoc-$GITHUB_SHA
+        echo 'Successfully pushed to automate-apidoc-$GITHUB_SHA branch'
+
+    - name: Create pull request for new BBEs
+      shell: bash
+      run: |
+        curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+        bin/hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for the new release'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
