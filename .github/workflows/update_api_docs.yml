@@ -37,7 +37,7 @@ jobs:
     - name: Generate API Docs
       run: |
         cd ballerina-lang/distribution/zip/jballerina-tools
-        ../../../gradlew build -x check -x :composer-library:npmInstall -x :testerina:report-tools:npmInstall -x :testerina:report-tools:npmBuild
+        ../../../gradlew build -x check -x :composer-library:npmInstall -x :testerina:report-tools:npmInstall -x :testerina:report-tools:npmBuild -x :composer-library:npmBuild
 
     - name: Remove old API Docs
       run: git rm -r learn/api-docs/ballerina
