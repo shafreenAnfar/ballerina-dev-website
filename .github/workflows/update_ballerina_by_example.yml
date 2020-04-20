@@ -13,6 +13,7 @@ jobs:
 
     steps:
     - name: Install hub for creating pull request
+      shell: bash
       run: hub --version
 
     - name: Install Go
@@ -57,3 +58,11 @@ jobs:
         echo 'Successfully pushed to automate-bbes-$GITHUB_SHA branch'
 
         hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for new release'
+
+    - name: hub example
+      shell: bash
+      run: |
+        curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+        hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for new release'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
