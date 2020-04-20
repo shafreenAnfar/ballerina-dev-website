@@ -44,9 +44,8 @@ jobs:
 
     - name: Copy newly generated examples file
       run: |
-        version="`jq -r '.version' _data/latest/metadata.json`"
-        BAL_VERSION="v${version}"
-        cp -r ballerina-lang/distribution/zip/jballerina-tools/build/extracted-distributions/jballerina-tools-$BAL_VERSION/docs learn/api-docs/ballerina
+        VERSION="`jq -r '.version' _data/latest/metadata.json`"
+        cp -r ballerina-lang/distribution/zip/jballerina-tools/build/extracted-distributions/jballerina-tools-$VERSION/docs learn/api-docs/ballerina
 
     - name: Push changes for new API Docs
       run: |
