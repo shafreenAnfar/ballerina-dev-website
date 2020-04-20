@@ -37,7 +37,7 @@ jobs:
       run: git rm -r learn/by-example
 
     - name: Copy newly generated examples file
-      run: cp -r by-example learn/
+      run: cp -r ballerina-release/by-example learn/
 
     - name: Updating by examples file
       run: |
