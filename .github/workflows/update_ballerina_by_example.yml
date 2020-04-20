@@ -46,10 +46,12 @@ jobs:
         
         git config --global user.email "ballerina-bot@ballerina.org"
         git config --global user.name "shafreenAnfar"
+        
         git add learn/by-example
         git commit --allow-empty -m 'Update Ballerina by examples'
         
         git push --set-upstream origin automate-bbes-$GITHUB_SHA
         echo 'Successfully pushed to automate-bbes-$GITHUB_SHA branch'
+        
         sudo snap install hub --classic
         hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for new release'
