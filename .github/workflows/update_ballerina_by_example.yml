@@ -39,7 +39,7 @@ jobs:
     - name: Copy newly generated examples file
       run: cp -r ballerina-release/by-example learn/
 
-    - name: Updating by examples file
+    - name: Create Pull Request for new BBEs
       run: |
         git checkout automate-bbes-$GITHUB_SHA 2>/dev/null || git checkout -b automate-bbes-$GITHUB_SHA
         git pull origin master
@@ -49,7 +49,7 @@ jobs:
         git add learn/by-example
         git commit --allow-empty -m 'Update Ballerina by examples'
         
-        git push --set-upstream origin automate-release-notes-json-$GITHUB_SHA
-        echo 'Successfully pushed to automate-downloads-page-update branch'
+        git push --set-upstream origin automate-bbes-$GITHUB_SHA
+        echo 'Successfully pushed to automate-bbes-$GITHUB_SHA branch'
         sudo snap install hub --classic
         hub pull-request -m '[Automated] Update Ballerina by examples(BBEs) for new release'
