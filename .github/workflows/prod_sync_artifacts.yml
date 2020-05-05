@@ -1,7 +1,7 @@
 name: Sync artifacts from dev to prod
 
 on:
-  pull_request:
+  push:
     branches:
       - master
 
