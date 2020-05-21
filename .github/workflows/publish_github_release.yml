@@ -1,4 +1,4 @@
-name: Create PR for new Release-note with template
+name: Update github release with the new release
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - '_data/latest/**'
 
 jobs:
-  add-release-note:
+  update-github-release:
     runs-on: ubuntu-latest
 
     steps:    

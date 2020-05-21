@@ -3,7 +3,7 @@ import json
 with open('_data/latest/metadata.json') as f:
     json_data =json.load(f)
 
-version = data['version'] 
+version = json_data['version'] 
 
 with open('RN.md', 'r') as myfile:
   data = myfile.read().replace('\n', '\\n')
