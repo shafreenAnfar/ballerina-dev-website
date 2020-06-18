@@ -4,8 +4,8 @@ title: Object Initializer
 description: Ballerina by Example is a hands-on introduction to Ballerina using annotated example programs. Check out the first example or browse the full list below.
 permalink: /learn/by-example/object-initializer
 redirect_from:
-  - /v1-2/learn/by-example/object-initializer
-  - /v1-2/learn/by-example/object-initializer.html
+  - /v999/learn/by-example/object-initializer
+  - /v999/learn/by-example/object-initializer.html
 ---
 <div class="row cBallerina-io-Gray-row">
         <div class="container cBallerinaBySampleContainer">
@@ -26,13 +26,13 @@ redirect_from:
     <span class="k">if</span> <span class="p">(</span><span class="nx">p1</span> <span class="nx">is</span> <span class="nx">Person</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">reason</span><span class="p">());</span>
+        <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="kt">message</span><span class="p">());</span>
     <span class="p">}</span>
     <span class="nx">Person</span><span class="p">|</span><span class="nx">error</span> <span class="nx">p2</span> <span class="p">=</span> <span class="nx">new</span><span class="p">(</span><span class="s">&quot;Sam&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">p2</span> <span class="nx">is</span> <span class="nx">Person</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">p2</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">p2</span><span class="p">.</span><span class="nx">reason</span><span class="p">());</span>
+        <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">p2</span><span class="p">.</span><span class="kt">message</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -235,7 +235,7 @@ redirect_from:
     if (p1 is Person) {
         io:println(p1.name);
     } else {
-        io:println(p1.reason());
+        io:println(p1.message());
     }
 </code></pre></div>
 
@@ -260,7 +260,7 @@ redirect_from:
     if (p2 is Person) {
         io:println(p2.name);
     } else {
-        io:println(p2.reason());
+        io:println(p2.message());
     }
 }
 </code></pre></div>

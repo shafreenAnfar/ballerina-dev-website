@@ -1,27 +1,39 @@
 ---
 layout: ballerina-example-page
-title: Java Arrays
+title: XML From Query Expression
 description: Ballerina by Example is a hands-on introduction to Ballerina using annotated example programs. Check out the first example or browse the full list below.
-permalink: /learn/by-example/java-arrays
+permalink: /learn/by-example/query-expression-to-xml
 redirect_from:
-  - /v1-2/learn/by-example/java-arrays
-  - /v1-2/learn/by-example/java-arrays.html
+  - /v999/learn/by-example/query-expression-to-xml
+  - /v999/learn/by-example/query-expression-to-xml.html
 ---
 <div class="row cBallerina-io-Gray-row">
         <div class="container cBallerinaBySampleContainer">
             <div class="FullCode">
-                <div class="highlight"><pre><span class="kn">import</span> <span class="nx">ballerina</span><span class="o">/</span><span class="nx">io</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nx">ballerina</span><span class="o">/</span><span class="nx">java</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nx">ballerina</span><span class="o">/</span><span class="nx">java</span><span class="p">.</span><span class="nx">arrays</span> <span class="k">as</span> <span class="nx">jarrays</span><span class="p">;</span><span class="nx">public</span> <span class="kd">function</span> <span class="nx">splitString</span><span class="p">(</span><span class="nx">handle</span> <span class="nx">receiver</span><span class="p">,</span> <span class="nx">handle</span> <span class="nx">regex</span><span class="p">)</span> <span class="nx">returns</span> <span class="nx">handle</span> <span class="p">=</span> <span class="nd">@java:Method {</span>
-    <span class="nx">name</span><span class="p">:</span> <span class="s">&quot;split&quot;</span><span class="p">,</span>
-    <span class="nx">class</span><span class="p">:</span> <span class="s">&quot;java/lang/String&quot;</span>
-<span class="p">}</span> <span class="nx">external</span><span class="p">;</span><span class="nx">public</span> <span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">handle</span> <span class="nx">helloString</span> <span class="p">=</span> <span class="nx">java</span><span class="p">:</span><span class="nx">fromString</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
-    <span class="nx">handle</span> <span class="nx">regex</span> <span class="p">=</span> <span class="nx">java</span><span class="p">:</span><span class="nx">fromString</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-    <span class="nx">handle</span> <span class="nx">words</span> <span class="p">=</span> <span class="nx">splitString</span><span class="p">(</span><span class="nx">helloString</span><span class="p">,</span> <span class="nx">regex</span><span class="p">);</span>    <span class="kt">int</span> <span class="nx">numWords</span> <span class="p">=</span> <span class="nx">jarrays</span><span class="p">:</span><span class="nx">getLength</span><span class="p">(</span><span class="nx">words</span><span class="p">);</span>
-    <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">numWords</span><span class="p">);</span>
-    <span class="nx">handle</span> <span class="nx">secondWord</span> <span class="p">=</span> <span class="nx">jarrays</span><span class="p">:</span><span class="nx">get</span><span class="p">(</span><span class="nx">words</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">secondWord</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="kn">import</span> <span class="nx">ballerina</span><span class="o">/</span><span class="nx">io</span><span class="p">;</span><span class="nx">public</span> <span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">xml</span> <span class="nx">school</span> <span class="p">=</span> <span class="kt">xml</span> <span class="s">`&lt;school&gt;</span>
+<span class="s">                        &lt;student&gt;</span>
+<span class="s">                           &lt;firstName&gt;Alex&lt;/firstName&gt;</span>
+<span class="s">                           &lt;lastName&gt;George&lt;/lastName&gt;</span>
+<span class="s">                           &lt;intakeYear&gt;2020&lt;/intakeYear&gt;</span>
+<span class="s">                           &lt;score&gt;1.5&lt;/score&gt;</span>
+<span class="s">                        &lt;/student&gt;</span>
+<span class="s">                        &lt;student&gt;</span>
+<span class="s">                           &lt;firstName&gt;Ranjan&lt;/firstName&gt;</span>
+<span class="s">                           &lt;lastName&gt;Fonseka&lt;/lastName&gt;</span>
+<span class="s">                           &lt;intakeYear&gt;2020&lt;/intakeYear&gt;</span>
+<span class="s">                           &lt;score&gt;0.9&lt;/score&gt;</span>
+<span class="s">                        &lt;/student&gt;</span>
+<span class="s">                        &lt;student&gt;</span>
+<span class="s">                           &lt;firstName&gt;John&lt;/firstName&gt;</span>
+<span class="s">                           &lt;lastName&gt;David&lt;/lastName&gt;</span>
+<span class="s">                           &lt;intakeYear&gt;2022&lt;/intakeYear&gt;</span>
+<span class="s">                           &lt;score&gt;1.5&lt;/score&gt;</span>
+<span class="s">                        &lt;/student&gt;</span>
+<span class="s">                      &lt;/school&gt;`</span><span class="p">;</span>
+    <span class="kt">xml</span> <span class="nx">authors</span> <span class="p">=</span> <span class="nx">from</span> <span class="k">var</span> <span class="nx">x</span> <span class="nx">in</span> <span class="nx">school</span><span class="o">/</span><span class="p">&lt;</span><span class="nx">student</span><span class="p">&gt;</span><span class="o">/</span><span class="p">&lt;</span><span class="nx">firstName</span><span class="p">&gt;</span>
+        <span class="nx">select</span> <span class="p">&lt;</span><span class="kt">xml</span><span class="p">&gt;</span> <span class="nx">x</span>
+        <span class="nx">limit</span> <span class="mi">2</span><span class="p">;</span>    <span class="nx">io</span><span class="p">:</span><span class="nb">println</span><span class="p">(</span><span class="nx">authors</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -31,9 +43,10 @@ redirect_from:
                 <table class="cTopInfoContainer cTopControlsContainer">
                     <tr>
                         <td class="cLeftTD">
-                            <h2>Java Arrays</h2>
-                            <p><p>Java arrays are represented by the <code>handle</code> type in Ballerina. They can be manipulated using the
- <code>getArrayElement</code>, <code>setArrayElement</code> and <code>getArrayLength</code> methods provided by the <code>ballerina/java</code> module.</p>
+                            <h2>XML From Query Expression</h2>
+                            <p><p>Having the <code>xml</code> type as the target type for a <code>query expression</code> allows users to create an XML from
+ that query expression. The resulted <code>xml</code> is the concatenation of the emitted values from the <code>select</code> clause.
+ Therefore, every emitted value from the select clause must be of the type <code>xml</code>.</p>
 </p>
 
                         </td>
@@ -41,16 +54,16 @@ redirect_from:
                             <div class="cTopButtonContainer">
                                 
                                 <div class="cButtonInfoContainer">
-                                    <a class="prev" href="access-mutate-java-fields.html">
+                                    <a class="prev" href="query-expression-to-table.html">
                                         <span>< PREVIOUS</span>
-                                        <p>Access/Mutate Java Fields</p>
+                                        <p>Table From Query Expression</p>
                                     </a>
                                 </div>
                                  
                                 <div class="cButtonInfoContainer">
-                                    <a class="next" href="java-varargs.html">
+                                    <a class="next" href="query-action.html">
                                         <span>NEXT ></span>
-                                        <p>Java Varargs</p>
+                                        <p>Query Action</p>
                                     </a>
                                 </div>
                                 
@@ -59,7 +72,7 @@ redirect_from:
                     </tr>
                 </table>
             </div>
-            <div class="example" id="java-arrays">
+            <div class="example" id="query-expression-to-xml">
                 <div class="col-xs-12 col-sm-12 col-md-12 cBBETable-container cCodeLeft">
                     <table class="cTopControlsContainer">
                         <tr>
@@ -70,7 +83,7 @@ redirect_from:
                                             <a class="copy"><img src="/img/copy-icon.svg" /></a>
                                         </li>
                                         <li>
-                                            <a target="_blank" href="https://github.com/ballerina-lang/ballerina/tree/master/examples/java-arrays/"><img src="/img/github-logo-green.svg" /></a>
+                                            <a target="_blank" href="https://github.com/ballerina-lang/ballerina/tree/master/examples/query-expression-to-xml/"><img src="/img/github-logo-green.svg" /></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -111,23 +124,6 @@ redirect_from:
 
                                 <td class="code leading">
                                     <div class="highlight"><pre><code class=ballerina>import ballerina/io;
-import ballerina/java;
-import ballerina/java.arrays as jarrays;
-</code></pre></div>
-
-                                </td>
-                                <td class="docs">
-                                    
-                                </td>
-                            </tr>
-                            
-                            <tr class="cTR">
-
-                                <td class="code leading">
-                                    <div class="highlight"><pre><code class=ballerina>public function splitString(handle receiver, handle regex) returns handle = @java:Method {
-    name: &quot;split&quot;,
-    class: &quot;java/lang/String&quot;
-} external;
 </code></pre></div>
 
                                 </td>
@@ -151,8 +147,26 @@ import ballerina/java.arrays as jarrays;
                             <tr class="cTR hover-enable">
 
                                 <td class="code leading">
-                                    <div class="highlight"><pre><code class=ballerina>    handle helloString = java:fromString(&quot;Hello world&quot;);
-    handle regex = java:fromString(&quot; &quot;);
+                                    <div class="highlight"><pre><code class=ballerina>    xml school = xml `&lt;school&gt;
+                        &lt;student&gt;
+                           &lt;firstName&gt;Alex&lt;/firstName&gt;
+                           &lt;lastName&gt;George&lt;/lastName&gt;
+                           &lt;intakeYear&gt;2020&lt;/intakeYear&gt;
+                           &lt;score&gt;1.5&lt;/score&gt;
+                        &lt;/student&gt;
+                        &lt;student&gt;
+                           &lt;firstName&gt;Ranjan&lt;/firstName&gt;
+                           &lt;lastName&gt;Fonseka&lt;/lastName&gt;
+                           &lt;intakeYear&gt;2020&lt;/intakeYear&gt;
+                           &lt;score&gt;0.9&lt;/score&gt;
+                        &lt;/student&gt;
+                        &lt;student&gt;
+                           &lt;firstName&gt;John&lt;/firstName&gt;
+                           &lt;lastName&gt;David&lt;/lastName&gt;
+                           &lt;intakeYear&gt;2022&lt;/intakeYear&gt;
+                           &lt;score&gt;1.5&lt;/score&gt;
+                        &lt;/student&gt;
+                      &lt;/school&gt;`;
 </code></pre></div>
 
                                 </td>
@@ -160,7 +174,7 @@ import ballerina/java.arrays as jarrays;
                                     
                                     <div class="cCodeDesription">
                                         <div>
-                                            <p>Convert Ballerina strings to Java strings before passing to Java methods.</p>
+                                            <p>The <code>xml</code> element with nested children.</p>
 
                                         </div>
                                     </div>
@@ -171,7 +185,7 @@ import ballerina/java.arrays as jarrays;
                             <tr class="cTR hover-enable">
 
                                 <td class="code leading">
-                                    <div class="highlight"><pre><code class=ballerina>    handle words = splitString(helloString, regex);
+                                    <div class="highlight"><pre><code class=ballerina>    xml authors = from var x in school/&lt;student&gt;/&lt;firstName&gt;
 </code></pre></div>
 
                                 </td>
@@ -179,7 +193,47 @@ import ballerina/java.arrays as jarrays;
                                     
                                     <div class="cCodeDesription">
                                         <div>
-                                            <p>Invoke an external method, implemented in Java.</p>
+                                            <p>The <code>from</code> clause works similarly to a <code>foreach</code> statement.
+ The <code>authors</code> is the concatenated <code>xml</code> of the <code>query expression</code> results.</p>
+
+                                        </div>
+                                    </div>
+                                    
+                                </td>
+                            </tr>
+                            
+                            <tr class="cTR hover-enable">
+
+                                <td class="code leading">
+                                    <div class="highlight"><pre><code class=ballerina>        select &lt;xml&gt; x
+</code></pre></div>
+
+                                </td>
+                                <td class="docs">
+                                    
+                                    <div class="cCodeDesription">
+                                        <div>
+                                            <p>The <code>select</code> clause is evaluated for each iteration.
+ The emitted values are concatenated to form the <code>xml</code> result.</p>
+
+                                        </div>
+                                    </div>
+                                    
+                                </td>
+                            </tr>
+                            
+                            <tr class="cTR hover-enable">
+
+                                <td class="code leading">
+                                    <div class="highlight"><pre><code class=ballerina>        limit 2;
+</code></pre></div>
+
+                                </td>
+                                <td class="docs">
+                                    
+                                    <div class="cCodeDesription">
+                                        <div>
+                                            <p>The <code>limit</code> clause limits the number of output items.</p>
 
                                         </div>
                                     </div>
@@ -189,34 +243,13 @@ import ballerina/java.arrays as jarrays;
                             
                             <tr class="cTR">
 
-                                <td class="code leading">
-                                    <div class="highlight"><pre><code class=ballerina>    int numWords = jarrays:getLength(words);
-    io:println(numWords);
-</code></pre></div>
-
-                                </td>
-                                <td class="docs">
-                                    
-                                </td>
-                            </tr>
-                            
-                            <tr class="cTR hover-enable">
-
                                 <td class="code">
-                                    <div class="highlight"><pre><code class=ballerina>    handle secondWord = jarrays:get(words, 1);
-    io:println(secondWord);
+                                    <div class="highlight"><pre><code class=ballerina>    io:println(authors);
 }
 </code></pre></div>
 
                                 </td>
                                 <td class="docs">
-                                    
-                                    <div class="cCodeDesription">
-                                        <div>
-                                            <p>Access an array element, pass the handle that refers to the Java array instance as the first argument.</p>
-
-                                        </div>
-                                    </div>
                                     
                                 </td>
                             </tr>
@@ -229,6 +262,10 @@ import ballerina/java.arrays as jarrays;
                                 
                             
                         
+                            
+                                
+                            
+                        
 
                     <div>
 
@@ -236,12 +273,22 @@ import ballerina/java.arrays as jarrays;
                             
                             <tr class="cTR cOutputTr">
 
-                                <td class="code cOutput">
+                                <td class="code leading cOutput">
                                     <div class="highlight"><pre><code class=shell-session># To run this sample, navigate to the directory that contains the
-# `.bal` file and use the `ballerina run` command.
-$ ballerina run java_arrays.bal
-2
-world
+# `.bal` file and execute the `ballerina run` command.
+$ ballerina run query_expression_to_xml.bal
+</code></pre></div>
+
+                                </td>
+                                <td class="docs">
+                                    
+                                </td>
+                            </tr>
+                            
+                            <tr class="cTR cOutputTr">
+
+                                <td class="code cOutput">
+                                    <div class="highlight"><pre><code class=shell-session>&lt;firstName&gt;Alex&lt;/firstName&gt;&lt;firstName&gt;Ranjan&lt;/firstName&gt;
 </code></pre></div>
 
                                 </td>

@@ -4,8 +4,8 @@ title: Task Scheduler Appointment
 description: Ballerina by Example is a hands-on introduction to Ballerina using annotated example programs. Check out the first example or browse the full list below.
 permalink: /learn/by-example/task-scheduler-appointment
 redirect_from:
-  - /v1-2/learn/by-example/task-scheduler-appointment
-  - /v1-2/learn/by-example/task-scheduler-appointment.html
+  - /v999/learn/by-example/task-scheduler-appointment
+  - /v999/learn/by-example/task-scheduler-appointment.html
 ---
 <div class="row cBallerina-io-Gray-row">
         <div class="container cBallerinaBySampleContainer">
@@ -57,14 +57,16 @@ redirect_from:
                     <tr>
                         <td class="cLeftTD">
                             <h2>Task Scheduler Appointment</h2>
-                            <p><p>A Task Scheduler can be used to schedule an Appointment. An appointment should
+                            <p><p>A <code>task:Scheduler</code> can be used to schedule an Appointment. An appointment should
  have an <code>appointmentData</code> field. It can be either a <code>string</code> representing a
- CRON expression or an <code>AppointmentData</code> record. There is an optional
+ CRON expression or a <code>task:AppointmentData</code> record. There is an optional
  <code>noOfRecurrences</code> field that can be used to provide the maximum number of times
- the appointment should run before shutting down.
+ the appointment should run before shutting down.<br/><br/>
  A service can be attached to the Scheduler using the <code>attach()</code> function.
  Then the Scheduler can be started using <code>start()</code> method. When the scheduler
- needs to be cancelled, <code>stop()</code> method can be called.</p>
+ needs to be cancelled, <code>stop()</code> method can be called.<br/><br/>
+ For more information on the underlying module,
+ see the <a href="https://ballerina.io/learn/api-docs/ballerina/task/index.html">Task module</a>.</p>
 </p>
 
                         </td>
@@ -203,7 +205,7 @@ import ballerina/task;
                                     
                                     <div class="cCodeDesription">
                                         <div>
-                                            <p>The Appointment data record provides the appointment configurations.</p>
+                                            <p>The <a href="https://ballerina.io/learn/api-docs/ballerina/task/records/AppointmentData.html"><code>task:Appointment</code></a> data record provides the appointment configurations.</p>
 
                                         </div>
                                     </div>

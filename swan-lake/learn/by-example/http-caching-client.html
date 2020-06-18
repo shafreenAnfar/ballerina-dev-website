@@ -4,15 +4,15 @@ title: HTTP Caching
 description: Ballerina by Example is a hands-on introduction to Ballerina using annotated example programs. Check out the first example or browse the full list below.
 permalink: /learn/by-example/http-caching-client
 redirect_from:
-  - /v1-2/learn/by-example/http-caching-client
-  - /v1-2/learn/by-example/http-caching-client.html
+  - /v999/learn/by-example/http-caching-client
+  - /v999/learn/by-example/http-caching-client.html
 ---
 <div class="row cBallerina-io-Gray-row">
         <div class="container cBallerinaBySampleContainer">
             <div class="FullCode">
                 <div class="highlight"><pre><span class="kn">import</span> <span class="nx">ballerina</span><span class="o">/</span><span class="nx">http</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nx">ballerina</span><span class="o">/</span><span class="nx">log</span><span class="p">;</span><span class="nx">http</span><span class="p">:</span><span class="nx">Client</span> <span class="nx">cachingEP</span> <span class="p">=</span> <span class="nx">new</span> <span class="p">(</span><span class="s">&quot;http://localhost:8080&quot;</span><span class="p">,</span>
-                             <span class="p">{</span><span class="nx">cache</span><span class="p">:</span> <span class="p">{</span><span class="nx">enabled</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">isShared</span><span class="p">:</span> <span class="kc">true</span><span class="p">}});</span><span class="nd">@http:ServiceConfig {</span>
+                             <span class="p">{</span><span class="nx">cache</span><span class="p">:</span> <span class="p">{</span><span class="nx">isShared</span><span class="p">:</span> <span class="kc">true</span><span class="p">}});</span><span class="nd">@http:ServiceConfig {</span>
     <span class="nx">basePath</span><span class="p">:</span> <span class="s">&quot;/cache&quot;</span>
 <span class="p">}</span>
 <span class="kd">service</span> <span class="nx">cachingProxy</span> <span class="nx">on</span> <span class="nx">new</span> <span class="nx">http</span><span class="p">:</span><span class="nx">Listener</span><span class="p">(</span><span class="mi">9090</span><span class="p">)</span> <span class="p">{</span>    <span class="nd">@http:ResourceConfig {</span>
@@ -62,8 +62,10 @@ redirect_from:
                     <tr>
                         <td class="cLeftTD">
                             <h2>HTTP Caching</h2>
-                            <p><p>HTTP caching is disabled by default in HTTP client endpoints.
- Users can configure caching using the <code>cache</code> field in the endpoint configurations.</p>
+                            <p><p>HTTP caching is enabled by default in HTTP client endpoints.
+ Users can configure caching using the <code>cache</code> field in the endpoint configurations.<br/><br/>
+ For more information on the underlying module,
+ see the <a href="https://ballerina.io/learn/api-docs/ballerina/http/index.html">HTTP module</a>.</p>
 </p>
 
                         </td>
@@ -181,8 +183,8 @@ import ballerina/log;
                                     
                                     <div class="cCodeDesription">
                                         <div>
-                                            <p>HTTP caching is disabled by default for client endpoints. Caching can be
- enabled by setting <code>enabled=true</code> in the <code>cache</code> config of the client
+                                            <p>HTTP caching is enabled by default for client endpoints. Caching can be
+ disabled by setting <code>enabled=false</code> in the <code>cache</code> config of the client
  endpoint. In this example, the <code>isShared</code> field of the <code>cacheConfig</code> is set
  to true, as the cache will be a public cache in this particular scenario.</p>
 
@@ -202,7 +204,7 @@ import ballerina/log;
 
                                 <td class="code leading">
                                     <div class="highlight"><pre><code class=ballerina>http:Client cachingEP = new (&quot;http://localhost:8080&quot;,
-                             {cache: {enabled: true, isShared: true}});
+                             {cache: {isShared: true}});
 </code></pre></div>
 
                                 </td>
